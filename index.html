@@ -52,19 +52,7 @@ p{max-width:68ch}.gold{color:var(--gold)}.btn{background:var(--gold);color:#2116
   <p>На камне вырезаны слова: «Не клинок меняет исход битвы, а то, что ты замечаешь до неё. Я дрожу рядом с чудовищем, но не от страха. Что я?»</p>
   <p class="note">Подсказка: вещь, которую ведьмак носит на груди.</p>
   <div class="row"><button class="choice" onclick="answer(2,'медальон')">Медальон</button><button class="choice" onclick="answer(2,'монета')">Монета</button><button class="choice" onclick="answer(2,'ключ')">Ключ</button></div>
-  <div class="status" id="s2"></div><button class="btn hidden" id="next2" onclick="go('contract')">Открыть тайный контракт →</button>
- </div>
-</section>
-
-<section class="screen western" id="contract">
- <div class="panel">
-  <div class="kicker">Испытание III · Контракт пожизненный</div><h2>Самая важная награда</h2>
-  <div class="riddle-img">💌 🔒 ❤️</div>
-  <p>Перед тобой контракт. Ни сроков, ни платы, ни возможности отказаться. Он заключён не с королём и не с бандой. С тем человеком, который выбрал тебя сердцем и собирается быть рядом и в шторм, и в тишине.</p>
-  <p><b>С кем у тебя заключён контракт пожизненно?</b></p>
-  <input class="answer" id="ritaAnswer" placeholder="Введи имя..." autocomplete="off">
-  <button class="btn" onclick="checkRita()">Подписать контракт ❤️</button>
-  <div class="status" id="s3"></div><button class="btn hidden" id="next3" onclick="go('sorting')">Контракт принят →</button>
+  <div class="status" id="s2"></div><button class="btn hidden" id="next2" onclick="go('sorting')">К следующему испытанию →</button>
  </div>
 </section>
 
