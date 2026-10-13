@@ -28,10 +28,10 @@ p{max-width:68ch}.gold{color:var(--gold)}.btn{background:var(--gold);color:#2116
   <h1>Вадик <span class="gold">XXVII</span></h1>
   <h2>Контракт судьбы</h2>
   <p>Ведьмачьи тропы привели тебя на Дикий Запад. Сегодня тебе исполнилось <b>27 лет</b>, и на твоё имя записан контракт, который не взять ни серебряным мечом, ни револьвером.</p>
-  <p>Чтобы получить награду, пройди испытания. Думай как ведьмак, замечай детали как следопыт и помни: некоторые вещи ценнее золота.</p>
+  <p>Чтобы получить награду, пройди испытания. Думай как ведьмак, замечай детали как опытный член банды Датча ван дер Линде. И помни: некоторые вещи ценнее золота.</p>
   <button class="btn" onclick="startQuest()">Взять контракт →</button>
   <button class="btn secondary" onclick="toggleMusic()" id="musicBtn">♫ Включить музыку</button>
-  <p class="note">Совет: лучше проходить на компьютере со звуком. Музыка запускается по нажатию — так работают браузеры.</p>
+  <p class="note">Совет: лучше проходить СО звуком. Музыка запускается по нажатию.</p>
  </div>
 </section>
 
@@ -60,7 +60,7 @@ p{max-width:68ch}.gold{color:var(--gold)}.btn{background:var(--gold);color:#2116
  <div class="panel">
   <div class="kicker">Испытание III · Контракт пожизненный</div><h2>Самая важная награда</h2>
   <div class="riddle-img">💌 🔒 ❤️</div>
-  <p>Перед тобой последний контракт. Ни сроков, ни платы, ни возможности отказаться. Он заключён не с королём и не с бандой. С тем человеком, который выбрал тебя сердцем и собирается быть рядом и в шторм, и в тишине.</p>
+  <p>Перед тобой контракт. Ни сроков, ни платы, ни возможности отказаться. Он заключён не с королём и не с бандой. С тем человеком, который выбрал тебя сердцем и собирается быть рядом и в шторм, и в тишине.</p>
   <p><b>С кем у тебя заключён контракт пожизненно?</b></p>
   <input class="answer" id="ritaAnswer" placeholder="Введи имя..." autocomplete="off">
   <button class="btn" onclick="checkRita()">Подписать контракт ❤️</button>
@@ -71,22 +71,25 @@ p{max-width:68ch}.gold{color:var(--gold)}.btn{background:var(--gold);color:#2116
 <section class="screen witcher" id="sorting">
  <div class="panel">
   <div class="kicker">Испытание IV · Раздел добычи</div><h2>Кому что принадлежит?</h2>
-  <p>Перетащи предметы в правильные лагеря. На телефоне можно нажимать на предмет, а затем на нужный лагерь.</p>
+  <p>Перетащи предметы в правильные лагеря. </p>
   <div class="items" id="items">
    <div class="item" draggable="true" data-owner="witcher">Серебряный меч ⚔️</div>
+   <div class="item" draggable="true" data-owner="witcher">Плотва 🐴</div>
    <div class="item" draggable="true" data-owner="arthur">Револьвер 🔫</div>
    <div class="item" draggable="true" data-owner="rita">Фломастеры 🖍️</div>
    <div class="item" draggable="true" data-owner="rita">Кот 🐈</div>
    <div class="item" draggable="true" data-owner="rita">Энергетик ⚡</div>
+   <div class="item" draggable="true" data-owner="arthur">Лассо 🪢</div>
    <div class="item" draggable="true" data-owner="rita">Подушка 🛏️</div>
    <div class="item" draggable="true" data-owner="witcher">Ведьмачий медальон 🐺</div>
    <div class="item" draggable="true" data-owner="arthur">Ковбойская шляпа 🤠</div>
-   <div class="item" draggable="true" data-owner="arthur">Седло 🐎</div>
+   <div class="item" draggable="true" data-owner="arthur">Бодицея 🐎</div>
+   <div class="item" draggable="true" data-owner="witcher">Игральная карта Гвинта 🃏</div>
   </div>
   <div class="draggrid">
    <div class="drop" data-drop="witcher"><h3>Геральт / Ведьмак</h3><div class="dropcontent"></div></div>
    <div class="drop" data-drop="arthur"><h3>Артур Морган</h3><div class="dropcontent"></div></div>
-   <div class="drop" data-drop="rita"><h3>Рита — хозяйка уюта 💋</h3><div class="dropcontent"></div></div>
+   <div class="drop" data-drop="rita"><h3>Рита — комплект для выживания 💋</h3><div class="dropcontent"></div></div>
   </div>
   <div class="status" id="sortStatus"></div><button class="btn" onclick="checkSort()">Проверить расклад</button><button class="btn hidden" id="next4" onclick="go('balloons')">Вперёд, к награде →</button>
  </div>
@@ -95,7 +98,7 @@ p{max-width:68ch}.gold{color:var(--gold)}.btn{background:var(--gold);color:#2116
 <section class="screen western" id="balloons">
  <div class="panel">
   <div class="kicker">Испытание V · Воздушная удача</div><h2>Лопни все сомнения</h2>
-  <p>Каждый шарик хранит пожелание или комплимент от Риты. Нажимай на шарики — собери все послания.</p>
+  <p>Унай, что я о тебе думаю. Нажимай на шарики — собери все послания.</p>
   <div class="balloons" id="balloonsArea"></div><div id="wishes"></div>
   <div class="status" id="balloonStatus">Открыто 0 из 8 посланий</div>
   <button class="btn hidden" id="next5" onclick="go('kaermorhen')">Следующий контракт →</button>
@@ -103,10 +106,10 @@ p{max-width:68ch}.gold{color:var(--gold)}.btn{background:var(--gold);color:#2116
 </section>
 
 
-<section class="screen witcher" id="kaermorhen"><div class="panel"><div class="kicker">Испытание VI · Переворот в крепости</div><h2>Кто правит Каэр Морхеном?</h2><div class="riddle-img">🏰 🐈 👑</div><p>В крепости ведьмаков произошёл переворот. Новый хозяин не носит меч, не охотится на чудовищ и не платит за еду. Он требует ужин по расписанию, занимает кровать и будит всех среди ночи.</p><p><b>Кто теперь главный в крепости?</b></p><div class="row"><button class="choice" onclick="questAnswer('kaermorhen',false,'Геральт пока может оставить меч у двери.')">А) Геральт из Ривии</button><button class="choice" onclick="questAnswer('kaermorhen',false,'Вадик, ты, конечно, ведьмак 27-го уровня…')">Б) Вадик, ведьмак 27-го уровня</button><button class="choice" onclick="questAnswer('kaermorhen',true,'Верно! Марсель, Повелитель Мисок и Разрушитель Ночного Сна, правит безраздельно. 😹')">В) Марсель, Повелитель Мисок</button></div><div class="status" id="status-kaermorhen"></div><button class="btn hidden" id="next-kaermorhen" onclick="go('choice')">Принять следующий контракт →</button></div></section>
-<section class="screen western" id="choice"><div class="panel"><div class="kicker">Испытание VII · Судьба королевства</div><h2>Самый сложный выбор ведьмака</h2><div class="riddle-img">🐺 ⚔️ ❤️</div><p>Перед Вадиком три задания: спасти королевство, победить древнее зло или провести вечер с Ритой. Все задания отмечены как срочные.</p><p><b>Какой квест он выберет?</b></p><div class="row"><button class="choice" onclick="questAnswer('choice',false,'Королевство подождёт… но ведьмак всё ещё раздумывает.')">А) Спасти королевство</button><button class="choice" onclick="questAnswer('choice',false,'Древнее зло никуда не денется. А вечер уже начинается!')">Б) Победить древнее зло</button><button class="choice" onclick="questAnswer('choice',true,'Именно! Королевство как-нибудь справится. +100 к отношениям и +50 к уюту. ❤️')">В) Пойти к Рите</button></div><div class="status" id="status-choice"></div><button class="btn hidden" id="next-choice" onclick="go('challenge')">К следующему испытанию →</button></div></section>
-<section class="screen witcher" id="challenge"><div class="panel"><div class="kicker">Испытание VIII · Тяжёлая судьба Геральта</div><h2>Что тяжелее для ведьмака?</h2><div class="riddle-img">🐺 🧹 💀</div><p>Вадик прошёл болота, победил чудовищ и пережил самые опасные приключения. Но теперь перед ним испытание, о котором не пишут в ведьмачьих книгах.</p><p><b>Что окажется самым тяжёлым испытанием?</b></p><div class="row"><button class="choice" onclick="questAnswer('challenge',false,'Монстр повержен! Но впереди ещё два испытания…')">А) Победить чудовище по имени Жопоклюй</button><button class="choice" onclick="questAnswer('challenge',false,'Даже Плотва удивилась такому трюку. Попробуй ещё раз!')">Б) Запрыгнуть на лошади в поезд</button><button class="choice" onclick="questAnswer('challenge',true,'ЛЕГЕНДАРНАЯ СЛОЖНОСТЬ! 😂 Ведьмак обнаружил, что чудовища оставляют меньше следов, чем Рита. +50 к терпению!')">В) Убрать весь срач после Риты по всей квартире</button></div><div class="status" id="status-challenge"></div><button class="btn hidden" id="next-challenge" onclick="go('gerald')">Продолжить испытание →</button></div></section>
-<section class="screen western" id="gerald"><div class="panel"><div class="kicker">Испытание IX · Бытовой босс</div><h2>Тяжёлая судьба Геральда</h2><div class="riddle-img">🧺 🐺 🛋️</div><p>Геральт вернулся домой после контракта. На полу следы приключений, на диване — вещи, а Марсель устроился посреди прохода и смотрит так, будто это ведьмак пришёл в гости.</p><p><b>Как поступит опытный охотник на чудовищ?</b></p><div class="row"><button class="choice" onclick="questAnswer('gerald',false,'Мечом тут не помочь. Попробуй другой вариант.')">А) Достанет серебряный меч</button><button class="choice" onclick="questAnswer('gerald',false,'Марсель не двигается. Он тут главный.')">Б) Попросит Марселя освободить проход</button><button class="choice" onclick="questAnswer('gerald',true,'Верно! Примет реальность, наведёт уют вместе с Ритой и выдаст Марселю премию вкусняшками. 🐈')">В) Смирится: это теперь их общее логово</button></div><div class="status" id="status-gerald"></div><button class="btn hidden" id="next-gerald" onclick="go('homecoming')">Последняя миссия →</button></div></section>
+<section class="screen witcher" id="kaermorhen"><div class="panel"><div class="kicker">Испытание VI · Переворот в крепости</div><h2>Кто правит Каэр Морхеном?</h2><div class="riddle-img">🏰 🤴 👑</div><p>В крепости ведьмаков произошёл переворот. Новый хозяин не носит меч, не охотится на чудовищ и не платит за еду. Он требует поглаживаний, занимает кровать и будит всех среди ночи.</p><p><b>Кто теперь главный в крепости?</b></p><div class="row"><button class="choice" onclick="questAnswer('kaermorhen',false,'Геральт пока может оставить меч у двери.')">А) Геральт из Ривии</button><button class="choice" onclick="questAnswer('kaermorhen',false,'Вадик, ты, конечно, ведьмак… Но кто всеми нами правит?')">Б) Вадик, ведьмак 27-го уровня</button><button class="choice" onclick="questAnswer('kaermorhen',true,'Верно! Марсель, Наш повелитель и Разрушитель Ночного Сна 😹')">В) Марсель, Повелитель Всего живого</button></div><div class="status" id="status-kaermorhen"></div><button class="btn hidden" id="next-kaermorhen" onclick="go('choice')">Принять следующий контракт →</button></div></section>
+<section class="screen western" id="choice"><div class="panel"><div class="kicker">Испытание VII · Судьба королевства</div><h2>Самый сложный выбор ведьмака</h2><div class="riddle-img">🐺 ⚔️ ❤️</div><p>Перед Тобой три задания: спасти королевство, победить древнее зло или провести вечер с Ритой. Все задания отмечены как срочные.</p><p><b>Какой квест выберешь?</b></p><div class="row"><button class="choice" onclick="questAnswer('choice',false,'Спишь на диване')">А) Спасти королевство</button><button class="choice" onclick="questAnswer('choice',false,'Развод!!!')">Б) Победить древнее зло</button><button class="choice" onclick="questAnswer('choice',true,'Именно! Королевство как-нибудь справится. А Импровизация истории еще не досмотрена ❤️')">В) Пойти к Рите</button></div><div class="status" id="status-choice"></div><button class="btn hidden" id="next-choice" onclick="go('challenge')">К следующему испытанию →</button></div></section>
+<section class="screen witcher" id="challenge"><div class="panel"><div class="kicker">Испытание VIII · Тяжёлая судьба Геральта</div><h2>Что тяжелее для ведьмака?</h2><div class="riddle-img">🐺 🧹 💀</div><p>Ты прошёл болота, победил чудовищ и пережил самые опасные приключения. Но теперь перед тобой испытание, о котором не пишут в ведьмачьих книгах.</p><p><b>Что окажется самым тяжёлым испытанием?</b></p><div class="row"><button class="choice" onclick="questAnswer('challenge',false,'Монстр повержен! Это было оооочень легко')">А) Победить чудовище по имени Жопоклюй</button><button class="choice" onclick="questAnswer('challenge',false,'Не ври. Ты запрыгиваешь с первого раза')">Б) Запрыгнуть на лошади в поезд</button><button class="choice" onclick="questAnswer('challenge',true,'ЛЕГЕНДАРНАЯ СЛОЖНОСТЬ! Ведьмак обнаружил, что чудовища оставляют меньше следов, чем Рита.')">В) Убрать весь срач после Риты по всей квартире</button></div><div class="status" id="status-challenge"></div><button class="btn hidden" id="next-challenge" onclick="go('gerald')">Продолжить испытание →</button></div></section>
+<section class="screen western" id="gerald"><div class="panel"><div class="kicker">Испытание IX · Бытовой босс</div><h2>Тяжёлая судьба Геральда</h2><div class="riddle-img">🧺 🐺 🛋️</div><p>Геральт вернулся домой после контракта. На полу следы приключений, на диване — вещи, а Марсель устроился посреди прохода и не собирается тебя пропускать.</p><p><b>Как поступит опытный охотник на чудовищ?</b></p><div class="row"><button class="choice" onclick="questAnswer('gerald',false,'Только попробуй оставить тапки, он отомстит.')">А) Достанет серебряный меч</button><button class="choice" onclick="questAnswer('gerald',false,'Марсель не ушел, а только громко заурчал')">Б) Попросит Марселя освободить проход</button><button class="choice" onclick="questAnswer('gerald',true,'Верно! А еще он накакал, поторопись. 🐈')">В) Начнет гладить, пока кот сам не решит уйти с пути</button></div><div class="status" id="status-gerald"></div><button class="btn hidden" id="next-gerald" onclick="go('homecoming')">Последняя миссия →</button></div></section>
 <section class="screen witcher" id="homecoming"><div class="panel"><div class="kicker">Финальная миссия · Контракт судьбы</div><h2>Вернуться домой</h2><div class="riddle-img">🏡 ❤️ 🐈</div><p>Вадик прошёл десятки опасных заданий. Побеждал чудовищ, переживал перестрелки и не раз спасал мир. Но теперь перед ним последнее задание.</p><p>«Рита ждёт дома. Марсель уже занял твоё место. Ужин может остыть. Судьба мира подождёт».</p><p><b>Что выберет настоящий герой?</b></p><div class="row"><button class="choice" onclick="questAnswer('homecoming',false,'На доске объявлений новых заданий нет. Зато дома ждут!')">А) Взять ещё один контракт</button><button class="choice" onclick="questAnswer('homecoming',false,'Доска объявлений пуста. Пора домой, ведьмак.')">Б) Проверить доску объявлений</button><button class="choice" onclick="questAnswer('homecoming',true,'ЗАДАНИЕ ВЫПОЛНЕНО ❤️ Ты победил, ведьмак. Лучший финал — быть рядом с теми, кого любишь. Награда: объятия Риты, мурчание Марселя и поздравление с 27-летием!')">В) Вернуться к Рите и Марселю</button></div><div class="status" id="status-homecoming"></div><button class="btn hidden" id="next-homecoming" onclick="go('final')">Получить главную награду ❤️</button></div></section>
 
 <section class="screen witcher" id="final">
