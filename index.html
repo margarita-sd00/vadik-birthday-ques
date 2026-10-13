@@ -131,10 +131,29 @@ function checkSort(){let all=[...document.querySelectorAll('.item')],placed=all.
 const wishes=['Ты мой любимый человек ❤️','С тобой даже обычный день — приключение.','Ты сильнее, чем думаешь.','Пусть мечты становятся планами, а планы — победами.','Обожаю твою улыбку.','Ты мой дом, где бы мы ни были.','Пусть удача скачет рядом, как верный конь.','И самое главное: я люблю тебя, Вадик! 💋'];
 let popped=0;const area=document.getElementById('balloonsArea');
 wishes.forEach((wish,i)=>{let b=document.createElement('button');b.className='balloon';b.setAttribute('aria-label','Лопнуть шарик '+(i+1));b.textContent='✦';b.onclick=()=>{if(b.classList.contains('popped'))return;b.classList.add('popped');b.textContent='';popped++;let w=document.createElement('div');w.className='wish';w.textContent='🎁 '+wish;document.getElementById('wishes').appendChild(w);document.getElementById('balloonStatus').textContent='Открыто '+popped+' из '+wishes.length+' посланий';if(popped===wishes.length)document.getElementById('next5').classList.remove('hidden')};area.appendChild(b)});
-let audioCtx=null,master=null,playing=false,oscillators=[];
-function toggleMusic(){if(!audioCtx){audioCtx=new (window.AudioContext||window.webkitAudioContext)();master=audioCtx.createGain();master.gain.value=.035;master.connect(audioCtx.destination)}if(playing){oscillators.forEach(o=>{try{o.stop()}catch(e){}});oscillators=[];playing=false;document.querySelectorAll('#musicBtn').forEach(b=>b.textContent='♫ Включить музыку');return}audioCtx.resume();playing=true;document.querySelectorAll('#musicBtn').forEach(b=>b.textContent='♫ Выключить музыку');
-// Original soft ambient drone, generated locally; no external audio file needed.
-[110,164.81,220,329.63].forEach((freq,i)=>{let o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=i===1?'triangle':'sine';o.frequency.value=freq;g.gain.value=[.45,.18,.12,.05][i];o.connect(g);g.connect(master);o.start();oscillators.push(o)});
+let music = null;
+
+function toggleMusic() {
+if (!music) {
+music = new Audio('assets/love-song.mp3');
+music.loop = true;
+music.volume = 0.35;
+}
+
+if (music.paused) {
+music.play().then(() => {
+document.querySelectorAll('#musicBtn').forEach(btn => {
+btn.textContent = '♫ Выключить музыку';
+});
+}).catch(() => {
+alert('Не удалось запустить музыку. Проверь MP3-файл и путь к нему.');
+});
+} else {
+music.pause();
+document.querySelectorAll('#musicBtn').forEach(btn => {
+btn.textContent = '♫ Включить музыку';
+});
+}
 }
 </script>
 </body></html>
