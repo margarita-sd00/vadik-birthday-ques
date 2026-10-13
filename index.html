@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Вадик 27 — Контракт судьбы</title>
+<style>
+:root{--gold:#d9ad63;--paper:#ead9b8;--ink:#171411;--red:#7c2822}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#100f0d;color:var(--paper);font:17px/1.65 Georgia,serif}
+button,input{font:inherit}button{cursor:pointer}
+.screen{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;padding:6vh 7vw;background-size:cover;background-position:center}
+.screen:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,7,6,.88),rgba(8,7,6,.48) 65%,rgba(8,7,6,.68))}
+.screen>*{position:relative;z-index:1}.witcher{background-image:url('assets/witcher-sunset.png')}.western{background-image:url('assets/western-sunset.png')}
+.panel{width:min(920px,100%);padding:clamp(22px,4vw,48px);border:1px solid #bd9558;background:rgba(17,14,12,.84);box-shadow:0 15px 70px #0008}
+.kicker{letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-size:.78rem}
+h1,h2{line-height:1.1;margin:.35em 0 .55em;font-weight:normal}h1{font-size:clamp(2.7rem,7vw,6rem);color:#f3dfb5}h2{font-size:clamp(2rem,4vw,3.4rem)}
+p{max-width:68ch}.gold{color:var(--gold)}.btn{background:var(--gold);color:#21160d;border:0;padding:13px 23px;margin:8px 8px 0 0;font-weight:bold;letter-spacing:.04em}.btn.secondary{background:transparent;border:1px solid var(--gold);color:var(--paper)}
+.row{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}.choice{flex:1 1 190px;text-align:left;background:#241d16;border:1px solid #80643d;color:var(--paper);padding:16px}.choice:hover,.choice.selected{border-color:#f3cc7a;background:#3a2919}
+.note{color:#c9b99b;font-size:.94rem}.status{color:#f1c778;min-height:1.6em}.riddle-img{font-size:3.2rem;letter-spacing:.2em;margin:15px 0}.answer{background:#201a14;border:1px solid #77603d;color:var(--paper);padding:12px 14px;width:min(380px,100%)}.draggrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}.items{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}.item{padding:9px 12px;background:#3a2b1d;border:1px solid #a17d48;cursor:grab;touch-action:manipulation}.drop{min-height:100px;padding:12px;border:1px dashed #b28b4d;background:#17130f}.drop h3{margin:0 0 6px;color:var(--gold);font-weight:normal}.balloons{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin:28px 0}.balloon{width:92px;height:112px;border-radius:50% 50% 46% 46%;border:2px solid #edc987;background:radial-gradient(circle at 30% 25%,#eabf79,#8c3026 70%);color:#fff1d1;font-size:2rem;box-shadow:inset -8px -8px 12px #160c0c66;position:relative}.balloon:after{content:"";position:absolute;bottom:-15px;left:43px;border-width:14px 5px 0;border-style:solid;border-color:#d9ad63 transparent transparent}.balloon.popped{opacity:.25;transform:scale(.72);pointer-events:none}.wish{padding:12px;border-left:2px solid var(--gold);margin:10px 0;background:#241d16}.final-image{width:100%;display:block;margin-top:25px;border:1px solid #bd9558}.hidden{display:none!important}.progress{height:4px;background:#443525;position:fixed;top:0;left:0;right:0;z-index:5}.progress span{display:block;height:100%;width:0;background:var(--gold);transition:width .4s}footer{color:#a9977a;font-size:.85rem;margin-top:24px}
+@media(max-width:600px){.screen{padding:28px 14px}.panel{padding:22px}.balloon{width:70px;height:88px}.balloon:after{left:32px}}
+</style>
+</head>
+<body>
+<div class="progress"><span id="progress"></span></div>
+
+<section class="screen witcher" id="intro">
+ <div class="panel">
+  <div class="kicker">Особое дело · 27-й год</div>
+  <h1>Вадик <span class="gold">XXVII</span></h1>
+  <h2>Контракт судьбы</h2>
+  <p>Ведьмачьи тропы привели тебя на Дикий Запад. Сегодня тебе исполнилось <b>27 лет</b>, и на твоё имя записан контракт, который не взять ни серебряным мечом, ни револьвером.</p>
+  <p>Чтобы получить награду, пройди испытания. Думай как ведьмак, замечай детали как следопыт и помни: некоторые вещи ценнее золота.</p>
+  <button class="btn" onclick="startQuest()">Взять контракт →</button>
+  <button class="btn secondary" onclick="toggleMusic()" id="musicBtn">♫ Включить музыку</button>
+  <p class="note">Совет: лучше проходить на компьютере со звуком. Музыка запускается по нажатию — так работают браузеры.</p>
+ </div>
+</section>
+
+<section class="screen western" id="riddle1">
+ <div class="panel">
+  <div class="kicker">Испытание I · Следопыт</div><h2>След у старого салуна</h2>
+  <div class="riddle-img">🐎 🌅 🧭</div>
+  <p>На столе оставили записку: «Я всегда показываю путь, но сам никуда не иду. У меня есть стрелка, но я не оружие. В дороге я полезнее карты, когда всё вокруг незнакомо».</p>
+  <div class="row"><button class="choice" onclick="answer(1,'компас')">Компас</button><button class="choice" onclick="answer(1,'медальон')">Ведьмачий медальон</button><button class="choice" onclick="answer(1,'револьвер')">Револьвер</button></div>
+  <div class="status" id="s1"></div><button class="btn hidden" id="next1" onclick="go('riddle2')">След ведёт дальше →</button>
+ </div>
+</section>
+
+<section class="screen witcher" id="riddle2">
+ <div class="panel">
+  <div class="kicker">Испытание II · Знак на камне</div><h2>Загадка старого ведьмака</h2>
+  <div class="riddle-img">🐺 ⚔️ 🌕</div>
+  <p>На камне вырезаны слова: «Не клинок меняет исход битвы, а то, что ты замечаешь до неё. Я дрожу рядом с чудовищем, но не от страха. Что я?»</p>
+  <p class="note">Подсказка: вещь, которую ведьмак носит на груди.</p>
+  <div class="row"><button class="choice" onclick="answer(2,'медальон')">Медальон</button><button class="choice" onclick="answer(2,'монета')">Монета</button><button class="choice" onclick="answer(2,'ключ')">Ключ</button></div>
+  <div class="status" id="s2"></div><button class="btn hidden" id="next2" onclick="go('contract')">Открыть тайный контракт →</button>
+ </div>
+</section>
+
+<section class="screen western" id="contract">
+ <div class="panel">
+  <div class="kicker">Испытание III · Контракт пожизненный</div><h2>Самая важная награда</h2>
+  <div class="riddle-img">💌 🔒 ❤️</div>
+  <p>Перед тобой последний контракт. Ни сроков, ни платы, ни возможности отказаться. Он заключён не с королём и не с бандой. С тем человеком, который выбрал тебя сердцем и собирается быть рядом и в шторм, и в тишине.</p>
+  <p><b>С кем у тебя заключён контракт пожизненно?</b></p>
+  <input class="answer" id="ritaAnswer" placeholder="Введи имя..." autocomplete="off">
+  <button class="btn" onclick="checkRita()">Подписать контракт ❤️</button>
+  <div class="status" id="s3"></div><button class="btn hidden" id="next3" onclick="go('sorting')">Контракт принят →</button>
+ </div>
+</section>
+
+<section class="screen witcher" id="sorting">
+ <div class="panel">
+  <div class="kicker">Испытание IV · Раздел добычи</div><h2>Кому что принадлежит?</h2>
+  <p>Перетащи предметы в правильные лагеря. На телефоне можно нажимать на предмет, а затем на нужный лагерь.</p>
+  <div class="items" id="items">
+   <div class="item" draggable="true" data-owner="witcher">Серебряный меч ⚔️</div>
+   <div class="item" draggable="true" data-owner="arthur">Револьвер 🔫</div>
+   <div class="item" draggable="true" data-owner="rita">Фломастеры 🖍️</div>
+   <div class="item" draggable="true" data-owner="rita">Кот 🐈</div>
+   <div class="item" draggable="true" data-owner="rita">Энергетик ⚡</div>
+   <div class="item" draggable="true" data-owner="rita">Подушка 🛏️</div>
+   <div class="item" draggable="true" data-owner="witcher">Ведьмачий медальон 🐺</div>
+   <div class="item" draggable="true" data-owner="arthur">Ковбойская шляпа 🤠</div>
+   <div class="item" draggable="true" data-owner="arthur">Седло 🐎</div>
+  </div>
+  <div class="draggrid">
+   <div class="drop" data-drop="witcher"><h3>Геральт / Ведьмак</h3><div class="dropcontent"></div></div>
+   <div class="drop" data-drop="arthur"><h3>Артур Морган</h3><div class="dropcontent"></div></div>
+   <div class="drop" data-drop="rita"><h3>Рита — хозяйка уюта 💋</h3><div class="dropcontent"></div></div>
+  </div>
+  <div class="status" id="sortStatus"></div><button class="btn" onclick="checkSort()">Проверить расклад</button><button class="btn hidden" id="next4" onclick="go('balloons')">Вперёд, к награде →</button>
+ </div>
+</section>
+
+<section class="screen western" id="balloons">
+ <div class="panel">
+  <div class="kicker">Испытание V · Воздушная удача</div><h2>Лопни все сомнения</h2>
+  <p>Каждый шарик хранит пожелание или комплимент от Риты. Нажимай на шарики — собери все послания.</p>
+  <div class="balloons" id="balloonsArea"></div><div id="wishes"></div>
+  <div class="status" id="balloonStatus">Открыто 0 из 8 посланий</div>
+  <button class="btn hidden" id="next5" onclick="go('final')">Получить главную награду →</button>
+ </div>
+</section>
+
+<section class="screen witcher" id="final">
+ <div class="panel">
+  <div class="kicker">Контракт выполнен · Награда найдена</div>
+  <h1>С днём рождения, <span class="gold">Вадик!</span></h1>
+  <h2>Тебе 27 — и впереди целый мир.</h2>
+  <p>Мой любимый, пусть в твоей жизни будет смелость ведьмака, удача ковбоя и дом, куда всегда хочется возвращаться. Желаю тебе здоровья, сил, больших побед и мечтаний, которые обязательно сбудутся.</p>
+  <p>А если однажды дорога станет трудной — помни: тебе не нужно проходить её одному. Я рядом. Я выбираю тебя снова и снова.</p>
+  <p class="gold">Твой пожизненный контракт подписан. С любовью, Рита. ❤️</p>
+  <img class="final-image" src="assets/final-love-story.png" alt="Романтическая история Вадика и Риты на закате">
+  <p class="note">Награда: бесконечные объятия, поцелуи и ещё одна глава вашей общей истории.</p>
+  <button class="btn" onclick="toggleMusic()">♫ Включить / выключить музыку</button>
+  <footer>Создано специально для Вадика · Уровень: легендарный · 27 лет</footer>
+ </div>
+</section>
+
+<script>
+const ids=['intro','riddle1','riddle2','contract','sorting','balloons','final'];
+function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});let n=ids.indexOf(id);document.getElementById('progress').style.width=(n/(ids.length-1)*100)+'%'}
+function startQuest(){go('riddle1')}
+const done={};
+function answer(n,a){const ok=(n===1&&a==='компас')||(n===2&&a==='медальон');document.getElementById('s'+n).textContent=ok?'Верно. Следопытский инстинкт тебя не подвёл.':'Не то. Осмотрись внимательнее и попробуй ещё.';if(ok){done[n]=true;document.getElementById('next'+n).classList.remove('hidden')}}
+function checkRita(){let v=document.getElementById('ritaAnswer').value.trim().toLowerCase().replaceAll('ё','е');if(v==='рита'){document.getElementById('s3').textContent='Контракт принят. Рита — не награда за квест, а любовь, с которой хочется пройти всю жизнь. ❤️';document.getElementById('next3').classList.remove('hidden')}else document.getElementById('s3').textContent='Имя спрятано в самом сердце. Попробуй ещё раз.'}
+let held=null, selected=null;
+document.querySelectorAll('.item').forEach(el=>{el.addEventListener('dragstart',e=>{held=el;e.dataTransfer.setData('text/plain','item')});el.addEventListener('click',()=>{selected=el;document.querySelectorAll('.item').forEach(x=>x.style.outline='');el.style.outline='2px solid #f3cc7a'})});
+document.querySelectorAll('.drop').forEach(zone=>{zone.addEventListener('dragover',e=>e.preventDefault());zone.addEventListener('drop',e=>{e.preventDefault();if(held)zone.querySelector('.dropcontent').appendChild(held);held=null});zone.addEventListener('click',()=>{if(selected){zone.querySelector('.dropcontent').appendChild(selected);selected.style.outline='';selected=null}})});
+function checkSort(){let all=[...document.querySelectorAll('.item')],placed=all.filter(x=>x.closest('.drop'));let right=placed.filter(x=>x.dataset.owner===x.closest('.drop').dataset.drop).length;let status=document.getElementById('sortStatus');if(placed.length<all.length){status.textContent='В лагерях '+placed.length+' из '+all.length+' предметов. Разложи все находки.';return}if(right===all.length){status.textContent='Идеально! Даже Рита одобрила распределение добычи. +100 к семейной мудрости.';document.getElementById('next4').classList.remove('hidden')}else status.textContent='Верно '+right+' из '+all.length+'. Подумай, кому действительно принадлежит каждый предмет.'}
+const wishes=['Ты мой любимый человек ❤️','С тобой даже обычный день — приключение.','Ты сильнее, чем думаешь.','Пусть мечты становятся планами, а планы — победами.','Обожаю твою улыбку.','Ты мой дом, где бы мы ни были.','Пусть удача скачет рядом, как верный конь.','И самое главное: я люблю тебя, Вадик! 💋'];
+let popped=0;const area=document.getElementById('balloonsArea');
+wishes.forEach((wish,i)=>{let b=document.createElement('button');b.className='balloon';b.setAttribute('aria-label','Лопнуть шарик '+(i+1));b.textContent='✦';b.onclick=()=>{if(b.classList.contains('popped'))return;b.classList.add('popped');b.textContent='';popped++;let w=document.createElement('div');w.className='wish';w.textContent='🎁 '+wish;document.getElementById('wishes').appendChild(w);document.getElementById('balloonStatus').textContent='Открыто '+popped+' из '+wishes.length+' посланий';if(popped===wishes.length)document.getElementById('next5').classList.remove('hidden')};area.appendChild(b)});
+let audioCtx=null,master=null,playing=false,oscillators=[];
+function toggleMusic(){if(!audioCtx){audioCtx=new (window.AudioContext||window.webkitAudioContext)();master=audioCtx.createGain();master.gain.value=.035;master.connect(audioCtx.destination)}if(playing){oscillators.forEach(o=>{try{o.stop()}catch(e){}});oscillators=[];playing=false;document.querySelectorAll('#musicBtn').forEach(b=>b.textContent='♫ Включить музыку');return}audioCtx.resume();playing=true;document.querySelectorAll('#musicBtn').forEach(b=>b.textContent='♫ Выключить музыку');
+// Original soft ambient drone, generated locally; no external audio file needed.
+[110,164.81,220,329.63].forEach((freq,i)=>{let o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=i===1?'triangle':'sine';o.frequency.value=freq;g.gain.value=[.45,.18,.12,.05][i];o.connect(g);g.connect(master);o.start();oscillators.push(o)});
+}
+</script>
+</body></html>
